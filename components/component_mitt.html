@@ -14,6 +14,7 @@
 <script type="module">
   import 'https://unpkg.com/mitt/dist/mitt.umd.js'; // mitt
 
+  const emitter = mitt();
   const app = Vue.createApp({});
 
   app.component('card-emit', {
@@ -28,7 +29,10 @@
     },
     methods: {
       sendData() {
-
+        console.log('sendData');
+        emitter.emit('sendProduct', this.product);
+        //自定義名稱, 要傳送的參數
+        
       }
     },
     template: `<div class="card" style="width: 18rem;">
@@ -45,7 +49,11 @@
       }
     },
     created() {
-
+      //觸發監聽
+      emitter.on('sendProduct', (data)=>{
+        console.log('card-on', data);
+        this.item = data;
+      });
     },
     template: `<div class="card" style="width: 18rem;">
       <div class="card-body">

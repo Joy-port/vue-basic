@@ -6,6 +6,7 @@
 <div id="app">
 
   <h3>watch 監聽單一變數</h3>
+  <p>監聽data 變化之後，可以觸發 methods 事件，不會產生新的值，而是更新內容重新渲染到畫面上</p>
   <label for="name">名字須超過十個字</label>
   <input type="text" id="name" v-model="tempName">
   <P>result: {{ result }}</P>
@@ -88,9 +89,20 @@ const App = {
       
     }
   },
+  watch:{
+    tempName(n,o){
+      console.log(n,o);
+      if(n.length >= 10){
+        this.result=`文字長度為 ${n.length} 個字，將儲存至變數name中`;
+        this.name = n ;
+      }else{
+        this.result=`輸入的文字僅有 ${n.length} 個字，上一次有 ${o.length} 個字`;
+      };
+    }
+  }
   // 保留文字：
-  // `文字長度為 ${n.length} 個字，將儲存至變數中`
-  // `輸入的文字僅有 ${n.length} 個字，上一次有 ${o.length} 個字`
+ 
+  // 
   // `媽媽買了 ${this.productName}，總共花費 ${this.productPrice} 元，另外這 ${this.productVegan? '是' : '不是'} 素食的`
 
 };

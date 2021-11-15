@@ -6,8 +6,9 @@
 <div id="app">
   <h3>Props 型別技巧</h3>
   <input type="number" v-model="money">
-
-  <props-type money="300"></props-type>
+  <p>使用<code>: v-bind:</code>技巧時，才會自動帶入js 屬性協助判別型別，除此之外，一率使用字串型別的格式技巧</p>
+  <props-type money="true"></props-type>
+  <props-type :money="{}"></props-type>
   <props-type :money="money"></props-type>
 
 
@@ -15,10 +16,12 @@
   <p>實戰中不太會用到全部技巧，常用的有：</p>
   <ul>
     <li>型別驗證</li>
-    <li>預設值、是否必填</li>
+    <li>預設值、是否必填(validation)</li>
   </ul>
+  <p>製作型別驗證的情境時，通常會在props 設定為<code>陣列 {}</code></p>
+  <p>通常驗證會在開發時給予適當的提示，但是如果出現驗證錯誤時，並不會影響運作，只會在 devtools 出現提示</p>
   <props-validation
-  :prop-a="fun"
+  :prop-a="fun" 
   prop-c="required"
   :prop-f="10000"
   >
@@ -55,13 +58,13 @@
       // 必要值
       propC: {
         type: String,
-        required: true,
+        required: true, //使否為必要存在
       },
 
       // 預設值
       propD: {
         type: Number,
-        default: 300
+        default: 300 // 加入預設值
       },
 
       // 自訂函式
