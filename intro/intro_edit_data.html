@@ -77,8 +77,7 @@ const App = {
   },
   methods: {
     editItem(itemChosen){
-      this.temp = {...itemChosen}; //為了不馬上調整資料，需要展開做到淺層拷貝
-
+      this.temp = {...itemChosen}; //為了不馬上調整資料，需要展開做到淺層拷貝 
     },
     confirmEdit() {
       //用id 判斷是新增或是修改

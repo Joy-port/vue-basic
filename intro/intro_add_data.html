@@ -52,9 +52,11 @@ const App = {
   },
   methods: {
     confirmEdit() {
-      this.temp.id = new Date().getTime();
+      //原本資料沒有這些欄位
+      this.temp.id = new Date().getTime(); 
       this.temp.onStock = false;
 
+      //把新增的內容加入物件中
       this.products.push(this.temp);
       console.log(this.products, this.temp);
     }
