@@ -28,6 +28,7 @@
 <!-- https://vue3js.cn/docs/zh/api/options-api.html -->
 <script>
 const App = {
+  //分門別類的管理方式
   name: '漂亮的元件',
   data() {
     return {
@@ -53,6 +54,7 @@ Vue.createApp(App).mount('#app');
 
   const CompositionApp = {
     setup() {
+      //在 setup  塞入所有內容
       // 定義資料
       const num = ref(0);
       // 生命週期

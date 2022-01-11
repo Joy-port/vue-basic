@@ -52,7 +52,7 @@ const App = {
       productName: '蛋餅',
       productPrice: 30,
       productVegan: false,
-      // 單一產品
+      // 單一物件包裹多個變數時
       product: {
         name: '蛋餅',
         price: 30,
@@ -86,10 +86,28 @@ const App = {
   },
   computed: {
     result2() {
-      
+      return `媽媽買了 ${this.productName}，總共花費 ${this.productPrice} 元，另外這 ${this.productVegan? '是' : '不是'} 素食的`
     }
   },
   watch:{
+    //單一物件包裹多個變數時
+    product:{
+      handler(n, o){
+        console.log(n, 0);
+        this.result4 =  `媽媽買了 ${this.product.name}，總共花費 ${this.product.price} 元，另外這 ${this.product.vegan? '是' : '不是'} 素食的`
+      },
+      deep: true
+    },
+    //單一產品有各自的變數時：當需要監聽三個變數時
+    productName() {
+      this.result3 =  `媽媽買了 ${this.productName}，總共花費 ${this.productPrice} 元，另外這 ${this.productVegan? '是' : '不是'} 素食的`
+    },
+    productPrice() {
+      this.result3 =  `媽媽買了 ${this.productName}，總共花費 ${this.productPrice} 元，另外這 ${this.productVegan? '是' : '不是'} 素食的`
+    },
+    productVegan() {
+      this.result3 =  `媽媽買了 ${this.productName}，總共花費 ${this.productPrice} 元，另外這 ${this.productVegan? '是' : '不是'} 素食的`
+    },
     tempName(n,o){
       console.log(n,o);
       if(n.length >= 10){

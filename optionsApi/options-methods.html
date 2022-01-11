@@ -18,8 +18,7 @@
   <button type="button" @click="callOtherMethod">呼叫另一個 methods</button>
 
   <h3>參數傳入</h3>
-  <button type="button" @click="methodParameter(1,2,3, $event)">參數傳入</button>
-  <p>{{methodParameter(1,2,3)}}</p>
+  <button type="button" @click="methodParameter(1,2,3,$event)">參數傳入</button>
 
   <h3>使用 methods 處理複雜資料</h3>
   <ul>
@@ -37,7 +36,9 @@
 
 
   <h3>作為 $filter 使用（取代複雜表達式）</h3>
-{{convertToAmount(sum)}}
+  <p>Vue 3 已經由 methods 取代</p>
+  {{`NT${sum}`}}
+  {{convertToAmount(sum)}}
 </div>
 
 <script>
@@ -79,10 +80,11 @@ const App = {
       this.trigger('由 callOtherMethod 觸發')
     },
     methodParameter(a, b, c, d) {
-      console.log(a, b, c, d)
+      console.log(a, b, c, d.target)
     },
     addToCart(product) {
       // console.log(product);
+      //產品加入購物車中
       this.carts.push(product);
       this.calculate();
     },
