@@ -9,9 +9,12 @@
   <div class="box" :class="{ rotate: isTransform }"></div>
   <hr>
   <!-- 當沒有參數時，預設第一個則是 dom 事件參數 -->
+  <span class="badge bg-primary">@click</span>
   <button class="btn btn-outline-primary" @click="changeClass">選轉物件</button>
+  <span class="badge bg-primary">@keyup + enter/shift...</span>
   <button class="btn btn-outline-primary" @keyup.enter="changeClass">按鈕事件</button>
   <!-- 當如果有參數時，則可以使用 $event -->
+  <span class="badge bg-primary">@click + $event</span>
   <button class="btn btn-outline-primary" @click="changeClassWithEvent('這段是自訂參數', $event)">自訂參數</button>
   <br>
   <br>
@@ -41,15 +44,15 @@ const App = {
       console.log(parameter, e);
     },
     inputEvent(e) {
-      console.log(e);
+      console.log(e.target.value);
     },
     keyboardEvent(e) {
       console.dir(e.keyCode)
-      // if (e.keyCode === 13) {
-      //   alert('你按下了 Enter')
-      // } else if (e.keyCode === 32) {
-      //   alert('你按下了 空白鍵')
-      // }
+      if (e.keyCode === 13) {
+        alert('你按下了 Enter')
+      } else if (e.keyCode === 32) {
+        alert('你按下了 空白鍵')
+      }
     }
   }
 };
